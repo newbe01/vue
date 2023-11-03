@@ -1,0 +1,50 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <div> {{first}}곱하기 {{second}} 는?</div>
+      <form v-on:submit="SubmitForm">
+        <input type="number" ref="answer" v-model="value"/>
+        <button type="submit">입력</button>
+        <!-- <div>{{value}}</div> -->
+      </form>
+      <div id="result"> {{result}} </div>
+    </div>
+
+    <script>
+      const app = new Vue({
+        el: "#root",
+        data: {
+          first: Math.ceil(Math.random() * 9),
+          second: Math.ceil(Math.random() * 9),
+          value: "",
+          result: "",
+        },
+        methods: {
+          SubmitForm(e) {
+            e.preventDefault();
+            if (this.first * this.second === parseInt(this.value)) {
+              this.result = "정답입니다"
+              this.first = Math.ceil(Math.random() * 9)
+              this.second = Math.ceil(Math.random() * 9)
+              this.value = ""
+              this.$refs.answer.focus()
+            } else {
+              this.result = "오답입니다"
+              this.value = ''
+              this.$refs.answer.focus()
+            }
+          }
+        },
+      });
+    </script>
+  </body>
+</html>
