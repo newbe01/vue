@@ -1,10 +1,10 @@
 {
-  "name": "reaction-test",
+  "name": "rockPaperScissors",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --watch",
+    "build": "webpack ",
     "dev": "webpack serve"
   },
   "author": "",
