@@ -2,11 +2,13 @@
   <div>
     <table-component :table-data="tableData" />
     <div> {{ turn }} turn</div>
+    <div v-if="winner"> {{ winner }} win</div>
   </div>
 </template>
   
 <script>
 import tableComponent from "./tableComponent.vue";
+
   export default {
     components: {
       tableComponent,
@@ -19,6 +21,7 @@ import tableComponent from "./tableComponent.vue";
           ['', '', ''],
         ],
         turn: "O",
+        winner : "",
       };
     },
     computed: {},
