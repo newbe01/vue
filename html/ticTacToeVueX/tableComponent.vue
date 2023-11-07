@@ -1,7 +1,7 @@
 <template>
     <table>
-        <tr-component v-for="(rowData, index) in tableData" :key="index" :row-index="index" ></tr-component>
-        
+        <!-- <tr-component v-for="(rowData, index) in tableData" :key="index" :row-index="index" ></tr-component> -->
+        <slot />
     </table>
 </template>
     
@@ -9,25 +9,25 @@
 import trComponent from "./trComponent.vue";
 
     export default {
-        components: {
-            trComponent,
-        },
-        props: {
-        },
-        data() {
-        return {};
-        },
-        computed: {
-            tableData() {
-                return this.$store.state.tableData;
-            }
-        },
-        methods: {},
-        mounted() {},
-        beforeDestroy() {},
-        watch: {
-        //값의 변경을 감지
-        },
+        // components: {
+        //     trComponent,
+        // },
+        // props: {
+        // },
+        // data() {
+        // return {};
+        // },
+        // computed: {
+        //     tableData() {
+        //         return this.$store.state.tableData;
+        //     }
+        // },
+        // methods: {},
+        // mounted() {},
+        // beforeDestroy() {},
+        // watch: {
+        // //값의 변경을 감지
+        // },
     };
 </script>
 
