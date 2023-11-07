@@ -1,17 +1,26 @@
 <template>
-    <td></td>
+    <td @click="onClickTd"> {{ cellData }} </td>
+    
 </template>
     
 <script>
     export default {
-        components: {
-            trComponent,
+        props: {
+            cellData: String,
+            rowIndex: Number,
+            cellIndex: Number,
         },
         data() {
-        return {};
+            return {};
         },
         computed: {},
-        methods: {},
+        methods: {
+            onClickTd() {
+                console.log(this.$root.$data)
+                this.$root.$data.tableData[this.rowIndex][this.cellIndex] = this.$root.$data.turn;
+                this.$root.$data.turn = this.$root.$data.turn === "O" ? "X" : "O";
+            },
+        },
         mounted() {},
         beforeDestroy() {},
         watch: {

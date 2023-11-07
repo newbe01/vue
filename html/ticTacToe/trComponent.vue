@@ -1,18 +1,24 @@
 <template>
     <tr>
-        <td-component></td-component>
+        <td-component v-for="(cellData, index) in rowData" :key="index" :cell-data="cellData" :cell-index="index" :row-index="rowIndex"></td-component>
     </tr>
 </template>
     
 <script>
-import TdComponent from './tdComponent.vue';
+import tdComponent from './tdComponent.vue';
 
     export default {
         components: {
-            TdComponent,
+            tdComponent,
+        },
+        props: {
+            rowData : Array,
+            rowIndex: Number,
         },
         data() {
-        return {};
+            return {
+                parent: 'parent',
+            };
         },
         computed: {},
         methods: {},

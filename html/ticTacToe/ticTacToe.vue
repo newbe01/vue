@@ -1,13 +1,25 @@
 <template>
-  <table-component />
+  <div>
+    <table-component :table-data="tableData" />
+    <div> {{ turn }} turn</div>
+  </div>
 </template>
   
 <script>
-import TableComponent from "./tableComponent";
+import tableComponent from "./tableComponent.vue";
   export default {
-    components: {},
+    components: {
+      tableComponent,
+    },
     data() {
-      return {};
+      return {
+        tableData : [
+          ['', '', ''],
+          ['', '', ''],
+          ['', '', ''],
+        ],
+        turn: "O",
+      };
     },
     computed: {},
     methods: {},
@@ -19,6 +31,15 @@ import TableComponent from "./tableComponent";
   };
 </script>
   
-<style scoped>
+<style>
+  talbe {
+    border-collapse: collapse;
+  }
+  td {
+    border : 1px solid black;
+    width : 40px;
+    height: 40px;
+    text-align: center;
+  }
 </style>
   
