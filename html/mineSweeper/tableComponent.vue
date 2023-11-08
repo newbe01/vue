@@ -55,7 +55,7 @@ import { CODE, OPEN_CELL, CLICK_MINE, FLAG_CELL, NORMALIZE_CELL, QUESTION_CELL, 
                         case CODE.QUESTION_MINE :
                             return '?';
                         default :
-                        return '';
+                        return this.$store.state.tableData[row][cell] || '';
                     }
                 }
             },
@@ -65,14 +65,23 @@ import { CODE, OPEN_CELL, CLICK_MINE, FLAG_CELL, NORMALIZE_CELL, QUESTION_CELL, 
                     if (this.halted) {
                         return;
                     }
-                    this.$store.commit(OPEN_CELL, { row, cell });
+
+                    switch (this.tableData[row][cell]) {
+                        case CODE.NORMAL :
+                            return this.$store.commit(OPEN_CELL, { row, cell });
+                        case CODE.MINE :
+                            return this.$store.commit(CLICK_MINE, { row, cell });
+                        default :
+                            return;
+                    }
+
                 },
 
                 onRightClickTd(row, cell) {
                     if (this.halted) {
                         return;
                     }
-                    
+
                     switch (this.tableData[row][cell]) {
                         case CODE.NORMAL : 
                         case CODE.MINE :
