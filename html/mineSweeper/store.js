@@ -122,32 +122,32 @@ export default new Vuex.Store({
               return [CODE.MINE, CODE.FLAG_MINE, CODE.QUESTION_MINE].includes(v);
             });
 
-            // if (counted.length === 0 && row > -1) { // 주변칸에 지뢰가 하나도 없으면
-            //   const near = [];
-            //   if (row - 1 > -1) {
-            //     near.push([row - 1, cell - 1]);
-            //     near.push([row - 1, cell]);
-            //     near.push([row - 1, cell + 1]);
-            //   }
+            if (counted.length === 0 && row > -1) { // 주변칸에 지뢰가 하나도 없으면
+            const near = [];
+            if (row - 1 > -1) {
+              near.push([row - 1, cell - 1]);
+              near.push([row - 1, cell]);
+              near.push([row - 1, cell + 1]);
+            }
 
-            //   near.push([row, cell - 1]);
-            //   near.push([row, cell + 1]);
-            //   if (row + 1 < state.tableData.length) {
-            //     near.push([row + 1, cell - 1]);
-            //     near.push([row + 1, cell]);
-            //     near.push([row + 1, cell + 1]);
-            //   }
+            near.push([row, cell - 1]);
+            near.push([row, cell + 1]);
+            if (row + 1 < state.tableData.length) {
+              near.push([row + 1, cell - 1]);
+              near.push([row + 1, cell]);
+              near.push([row + 1, cell + 1]);
+            }
 
-            //   near.forEach((n) => {
-            //     if (state.tableData[n[0]][n[1]] !== CODE.OPENED) {
-            //       checkAround(n[0], n[1]);
-            //     }
-            //   });
-            // }
+            near.forEach((n) => {
+              if (state.tableData[n[0]][n[1]] !== CODE.OPENED) {
+                checkAround(n[0], n[1]);
+              }
+            });
+          }
 
-            // if (state.tableData[row][cell] === CODE.NORMAL) {
-            //   openedCount += 1;
-            // }
+          if (state.tableData[row][cell] === CODE.NORMAL) {
+            openedCount += 1;
+          }
 
             Vue.set(state.tableData[row], cell, counted.length);
           }
@@ -156,7 +156,7 @@ export default new Vuex.Store({
           let result = '';
           if (state.data.row * state.data.cell - state.data.mine === state.openedCount + openedCount) {
             halted = true;
-            result = `${state.timer}'s win`;
+            result = `${state.timer} win`;
           }
           state.openedCount += openedCount;
           state.halted = halted;
