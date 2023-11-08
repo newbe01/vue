@@ -8,13 +8,16 @@
 </template>
   
 <script>
+import { mapState } from 'vuex';
 import store from "./store.js";
 import tableComponent from "./tableComponent";
+import mineForm from "./mineForm.vue";
 
   export default {
     store,
     components: {
       tableComponent,
+      mineForm,
     },
     data() {
       return {
@@ -22,7 +25,7 @@ import tableComponent from "./tableComponent";
       };
     },
     computed: {
-      
+      ...mapState(['timer', 'result']),
     },
     methods: {
       
@@ -36,6 +39,14 @@ import tableComponent from "./tableComponent";
 </script>
   
 <style>
-
+  table {
+    border-collapse: collapse;
+  }
+  td {
+    border : 1px solid black;
+    width : 40px;
+    height: 40px;
+    text-align: center;
+  }
 </style>
   
