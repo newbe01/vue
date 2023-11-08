@@ -61,6 +61,8 @@ export default new Vuex.Store({
         },
         timer : 0,
         result: '',
+        halted : true, 
+        openedCount : 0,
     },
     getters: {  // vue computed와 비슷한역할
 
@@ -78,23 +80,35 @@ export default new Vuex.Store({
           state.openedCount = 0;
           state.result = '';
         },
-        [OPEN_CELL] (state) {
-
+        [OPEN_CELL] (state, { row, cell }) {
+          Vue.set(state.tableData[row], cell, CODE.OPENED);
         },
         [CLICK_MINE] (state) {
 
         },
-        [FLAG_CELL] (state) {
-
+        [FLAG_CELL] (state, { row, cell }) {
+          if(state.tableData[row][cell] === CODE.MINE) {
+            Vue.set(state.tableData[row], cell, CODE.FLAG_MINE);
+          } else {
+            Vue.set(state.tableData[row], cell, CODE.FLAG);
+          }
         },
-        [QUESTION_CELL] (state) {
-
+        [QUESTION_CELL] (state, { row, cell }) {
+          if(state.tableData[row][cell] === CODE.FLAG_MINE) {
+            Vue.set(state.tableData[row], cell, CODE.QUESTION_MINE);
+          } else {
+            Vue.set(state.tableData[row], cell, CODE.QUESTION);
+          }
         },
-        [NORMALIZE_CELL] (state) {
-
+        [NORMALIZE_CELL] (state, { row, cell }) {
+          if(state.tableData[row][cell] === CODE.QUESTION_MINE) {
+            Vue.set(state.tableData[row], cell, CODE.MINE);
+          } else {
+            Vue.set(state.tableData[row], cell, CODE.NORMAL);
+          }
         },
         [INCREMENT_TIMER] (state) {
-
+          state.timer += 1;
         },
 
     },

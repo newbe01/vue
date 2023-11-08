@@ -1,8 +1,8 @@
 <template>
     <div>
-        <input type="number" placeholder="row" value="row" @change="onChangeRow" />
-        <input type="number" placeholder="cell" value="cell" @change="onChangeCell" />
-        <input type="number" placeholder="mine" value="mine" @change="onChangeMine" />
+        <input type="number" placeholder="row" :value="row" @change="onChangeRow" />
+        <input type="number" placeholder="cell" :value="cell" @change="onChangeCell" />
+        <input type="number" placeholder="mine" :value="mine" @change="onChangeMine" />
         <button @click="onClickBtn"> start </button>
     </div>
 </template>
