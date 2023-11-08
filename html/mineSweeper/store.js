@@ -156,7 +156,7 @@ export default new Vuex.Store({
           let result = '';
           if (state.data.row * state.data.cell - state.data.mine === state.openedCount + openedCount) {
             halted = true;
-            result = `${state.timer} win`;
+            result = ` you win in ${state.timer}'s `;
           }
           state.openedCount += openedCount;
           state.halted = halted;
@@ -164,6 +164,7 @@ export default new Vuex.Store({
         },
         [CLICK_MINE] (state, { row, cell }) {
           state.halted = true;
+          state.result = `you lose`;
           Vue.set(state.tableData[row], cell, CODE.CLICKED_MINE);
         },
         [FLAG_CELL] (state, { row, cell }) {
