@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name : "lottoBall1",
+        name : "lottoBall",
         props: {
             number: Number,
         },
